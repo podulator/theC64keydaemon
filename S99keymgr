@@ -1,0 +1,29 @@
+#!/bin/sh -e
+
+start() {                                                
+	echo "keymgr: start called" >> /tmp/keymgr.log
+	nohup /usr/bin/keymgr 2>&1 &
+	echo "keymgr: started" >> /tmp/keymgr.log
+}
+
+stop() {
+	echo "keymgr: stopping"
+	echo "keymgr: stopping" >> /tmp/keymgr.log
+}
+
+case "$1" in 
+start)
+        start
+;;
+stop)
+        stop                                            
+;;
+restart)
+        stop                              
+        start                                                       
+;;
+*)
+        echo "keymgr: Please use start, stop, or restart."
+        exit 1                       
+;;
+esac
